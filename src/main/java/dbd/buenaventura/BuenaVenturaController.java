@@ -1,12 +1,11 @@
 package dbd.buenaventura;
 
+import dbd.buenaventura.models.Empleado;
+import dbd.buenaventura.models.Informe;
 import dbd.buenaventura.models.ListadoIPERC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,15 @@ public class BuenaVenturaController {
         return buenaVenturaService.getListadoIPERC();
     }
 
+    @GetMapping("/getEmpleados")
+    List<Empleado> getEmpleados(@RequestParam(required = false) Integer id_proceso){
+        System.out.println("id_proceso: "+id_proceso);
+        return buenaVenturaService.getEmpleados(id_proceso);
+    }
 
+    @GetMapping("/getInforme")
+    Informe getInforme(@RequestParam int id_proceso){
+        return buenaVenturaService.getInforme(id_proceso);
+    }
 }
 
